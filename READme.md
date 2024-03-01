@@ -2,7 +2,8 @@
 
 The project was to do a phylogenetic analysis of Haemoproteus tartakovskyi (Ht) with other close relative parasite genomes (Plasmodium species).
 The starting point was an already assembled genome of Haemoproteus tartakovskyi, contaminated with DNA of bird origin and: 
-```	1) Filter the contigs by size and GC content
+```	
+	1) Filter the contigs by size and GC content
 	2a) Perform Gene prediction (using Genemark) for close related species (Plasmodium sp.)
 	2b) Perform Gene prediction of the Ht genome (using Genemark) and then run BLAST to identify those of bird origin
 	3) Clean the Ht genome to remove contigs containing predicted bird genes
