@@ -105,16 +105,17 @@ chmod +x gffParse.pl # make the script executable
 ./gffParse.pl -i ../../1_rawdata/CleanHtgenome1/HtClean.genome -g genemark.Ht.gtf
 ```
 
-# header HtClean.genome:
+ header HtClean.genome:
 >contig00001 GC=0.28 Length=64494
-# first column genemark.Ht.gtf:
+first column genemark.Ht.gtf:
 contig00001 GC=0.28 Length=64494
-# Fix problem of compatible files (FASTA/gtf) to be able to run gffParse.pl:
+### Fix problem of compatible files (FASTA/gtf) to be able to run gffParse.pl:
 cat genemark.Ht.gtf | sed "s/ GC=.*\tGeneMark.hmm/\tGeneMark.hmm/" > genemark.Ht2.gff
 
 ./gffParse.pl -i ../../1_rawdata/CleanHtgenome1/HtClean.genome -g genemark.Ht2.gff
-# output files are gffParse.fna (fasta file containing the genes) and gffParse.log (log file)
-## you can use a -p flag to also generate a .faa file!
+
+output files are gffParse.fna (fasta file containing the genes) and gffParse.log (log file)
+you can use a -p flag to also generate a .faa file!
 
 ## STEP - 3: Clean the Ht genome to remove contigs containing predicted bird genes
 ### Identify scaffolds with avian origin, using BLAST
@@ -224,7 +225,7 @@ print(df)
 ```sh
 chmod +x genomesTable.py
 python genomesTable.py
-```
+
 #                    Species      Host Genome size (Mb) GC %  Genes
 0  1         Plasmodium berghei   rodents               18   23   7235
 1  2       Plasmodium cynomolgi  macaques               26   39   5787
@@ -234,7 +235,7 @@ python genomesTable.py
 5  6          Plasmodium yoelii   rodents               22   20   5682
 6  7  Haemoproteus tartakovskyi     birds               16   25   4889
 7  8          Toxoplasma gondii    humans               80   52  15892
-
+```
 
 ## STEP 6 - Identify orthologs
 This can be done with different tools. Here use of proteinortho and BUSCO
@@ -351,7 +352,7 @@ If Toxo is excluded, a higher number of common BUSCO (174) is found as this spec
 more distantly related than the other parasites genomes.
 
 
-## STEP 7: Retrieve protein fasta files from the 8 species for all 153 common BUSCO hits, in separate files (total 153):
+## STEP 7 - Retrieve protein fasta files from the 8 species for all 153 common BUSCO hits, in separate files (total 153):
 ### Step1: I rename the full_table.tsv obtained by the Ht BUSCO analysis, into Ht_full_table.tsv
 Same is done for all species.
 Then, I first create a table, using the script Busco2geneID in the script directory, that contains in 
@@ -398,7 +399,7 @@ do
 	clustalo -i ${file}.faa -o ${file}_aligned.faa -v
 done
 ```
-### STEP 9 - Phylogenetic trees using raxmlHPC for each BUSCO
+## STEP 9 - Phylogenetic trees using raxmlHPC for each BUSCO
 In the 4_alignments directory:
 ```sh
 # create trees using raxmlHPC:
@@ -412,9 +413,9 @@ done
 
 # move all output files *.tre and *.reduced in the output directory
 ```
-### STEP 10 - Make consensus tree with all BUSCO-generated trees, using Phylip
+## STEP 10 - Make consensus tree with all BUSCO-generated trees, using Phylip
 ```sh
-#Install the phylip package to merge all individual trees:
+### Install the phylip package to merge all individual trees:
 conda install -c bioconda phylip
 
 #I got different types of trees : bestTree, parsimonyTree and result files.
